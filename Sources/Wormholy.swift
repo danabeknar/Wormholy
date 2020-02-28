@@ -69,6 +69,19 @@ public class Wormholy: NSObject
     }
     
     // MARK: - Navigation
+    public static func viewController() -> UIViewController {
+        guard UIViewController.currentViewController()?.isKind(of: WHBaseViewController.classForCoder()) == false &&
+            UIViewController.currentViewController()?.isKind(of: WHNavigationController.classForCoder()) == false else {
+                return UIViewController()
+        }
+        let storyboard = UIStoryboard(name: "Flow", bundle: WHBundle.getBundle())
+        guard let initialVC = storyboard.instantiateInitialViewController() else {
+            return UIViewController()
+        }
+        
+        return initialVC
+    }
+    
     static func presentWormholyFlow(){
         guard UIViewController.currentViewController()?.isKind(of: WHBaseViewController.classForCoder()) == false && UIViewController.currentViewController()?.isKind(of: WHNavigationController.classForCoder()) == false else {
             return
