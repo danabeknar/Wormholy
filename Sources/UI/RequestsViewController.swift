@@ -19,8 +19,8 @@ class RequestsViewController: WHBaseViewController {
         
         addSearchController()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "More", style: .plain, target: self, action: #selector(openActionSheet(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(title: "Еще", style: .plain, target: self, action: #selector(openActionSheet(_:)))
         
         collectionView?.register(UINib(nibName: "RequestCell", bundle:WHBundle.getBundle()), forCellWithReuseIdentifier: "RequestCell")
         
@@ -60,7 +60,7 @@ class RequestsViewController: WHBaseViewController {
         } else {
             // Fallback
         }
-        searchController?.searchBar.placeholder = "Search URL"
+        searchController?.searchBar.placeholder = "URL"
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         } else {
@@ -81,15 +81,15 @@ class RequestsViewController: WHBaseViewController {
     
     // MARK: - Actions
     @objc func openActionSheet(_ sender: UIBarButtonItem){
-        let ac = UIAlertController(title: "Wormholy", message: "Choose an option", preferredStyle: .actionSheet)
+        let ac = UIAlertController(title: "Выберите опцию", message: nil, preferredStyle: .actionSheet)
         
-        ac.addAction(UIAlertAction(title: "Clear", style: .default) { [weak self] (action) in
+        ac.addAction(UIAlertAction(title: "Очистить", style: .default) { [weak self] (action) in
             self?.clearRequests()
         })
-        ac.addAction(UIAlertAction(title: "Share", style: .default) { [weak self] (action) in
+        ac.addAction(UIAlertAction(title: "Поделиться", style: .default) { [weak self] (action) in
             self?.shareContent(sender)
         })
-        ac.addAction(UIAlertAction(title: "Close", style: .cancel) { (action) in
+        ac.addAction(UIAlertAction(title: "Закрыть", style: .cancel) { (action) in
         })
         if UIDevice.current.userInterfaceIdiom == .pad {
             ac.popoverPresentationController?.barButtonItem = navigationItem.leftBarButtonItem

@@ -71,6 +71,10 @@ class BodyDetailViewController: WHBaseViewController {
         searchController?.searchResultsUpdater = self
         searchController?.searchBar.returnKeyType = .done
         searchController?.searchBar.delegate = self
+        if let textfield = searchController?.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = .black
+        }
+        
         if #available(iOS 9.1, *) {
             searchController?.obscuresBackgroundDuringPresentation = false
         } else {
